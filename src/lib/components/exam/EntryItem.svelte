@@ -11,7 +11,7 @@
 </script>
 
 
-<div class="flex w-1/2 py-2">
+<div class="flex w-full py-2 px-4">
 
 		<div class="collapse collapse-arrow bg-base-200">
 

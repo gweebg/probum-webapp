@@ -1,6 +1,9 @@
 <script>
 
 	import EntryItem from '$lib/components/exam/EntryItem.svelte';
+	import EntryFilter from '$lib/components/exam/EntryFilter.svelte';
+	import EntryListHeader from '$lib/components/exam/EntryListHeader.svelte';
+	import EntryStatistics from '$lib/components/exam/EntryStatistics.svelte';
 
 	export let data;
 
@@ -14,31 +17,37 @@
 	</title>
 </svelte:head>
 
-<main>
-	<div class="flex flex-col items-center justify-center">
+<div class="flex flex-row flex-1">
 
-		<header class="w-1/2">
-			<div class="flex items-center">
-				<h1 class="text-2xl"><span class="font-bold">{user.name}</span>'s Available Exams</h1>
-				<div class="badge badge-outline ml-auto mt-2">{exams.length} Entries</div>
-			</div>
-			<div class="divider mt-1"></div>
-		</header>
+	<!-- Listing Component -->
+	<div class="flex flex-col items-center flex-1">
 
-		{#if exams.length > 0}
+		<!-- Listing Header -->
+		<EntryListHeader user={user} exams={exams}/>
 
-			{#each exams as exam}
-				<EntryItem exam={exam}/>
-			{/each}
-
-		{:else}
-
-			<h1 class="text-xl text-neutral opacity-80">
-				Oops! You don't have exams assigned to your number!
-			</h1>
-
-		{/if}
+		<!-- Listing Items -->
+		<div class="w-full flex-1 overflow-scroll">
+			{#if exams.length > 0}
+				{#each exams as exam}
+					<EntryItem exam={exam}/>
+				{/each}
+			{:else}
+				<h1 class="text-xl text-neutral opacity-80">
+					Oops! You don't have exams assigned to your number!
+				</h1>
+			{/if}
+		</div>
 
 	</div>
 
-</main>
+	<div class="flex flex-col gap-2 w-1/5">
+
+		<!-- Filter & Sort Menu -->
+		<EntryFilter/>
+
+		<!--Statistics -->
+		<EntryStatistics/>
+
+	</div>
+
+</div>

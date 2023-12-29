@@ -1,8 +1,6 @@
 export function calculateTimeUntilDate(targetDate) {
 
 	const target = new Date(targetDate);
-	console.log(target);
-
 	const now = new Date();
 
 	const timeDifference = target - now;
