@@ -1,43 +1,52 @@
 <script>
 
+	export let exams;
+
+	const applyMetrics = (exams) => {
+
+		let metrics = {};
+
+		for (const e of exams) {
+			if (e.uc in metrics) metrics[e.uc] += 1;
+			else {
+				metrics[e.uc] = 1;
+			}
+		}
+
+		const sortedMetricEntries = Object.entries(metrics)
+			.sort((a, b) => b[1] - a[1]); // Sort in descending order based on the values
+
+		return Object.fromEntries(sortedMetricEntries);
+
+	}
+
+	const examMetrics = applyMetrics(exams);
+	const totalSum = Object.values(examMetrics).reduce((acc, currentValue) => acc + currentValue, 0);
 
 </script>
 
-<section class="flex flex-col bg-base-200 rounded-lg mb-2 flex-1 mr-4 shadow-md">
+<!-- Statistics -->
+<section class="flex flex-col bg-base-200 rounded-lg mb-4 flex-1 mr-4 shadow-md p-4">
 
-	<!-- Sort -->
-	<div class="p-4">
-
-		<header>
-			<h1 class="text-lg font-bold">Statistics</h1>
-			<div class="divider mt-0"></div>
-		</header>
+	<header>
+		<h1 class="text-lg font-bold">Statistics</h1>
+		<div class="divider mt-0"></div>
+	</header>
 
 
-		<div class="flex flex-col">
+	<div class="flex flex-col h-[320px] overflow-y-scroll scrollbar-hide">
 
-			<label class="form-control w-full max-w-xs">
-				<div class="label">
-					<span class="label-text">Sort by:</span>
+		{#each Object.entries(examMetrics) as [uc, count]}
+			<div class="w-full">
+
+				<div class="flex flex-row">
+					<p class="label-text">{uc}</p>
+					<span class="label-text ml-auto pr-2">{count}</span>
 				</div>
+				<progress class="progress progress-secondary w-full" value={(count * 100)/totalSum} max="100"></progress>
 
-				<select class="select select-bordered select-sm">
-					<option selected>Date</option>
-					<option>Course Name</option>
-				</select>
-
-				<div class="label">
-					<span class="label-text">Sort order:</span>
-				</div>
-
-				<select class="select select-bordered select-sm">
-					<option selected>Ascending</option>
-					<option>Descending</option>
-				</select>
-
-			</label>
-		</div>
-
+			</div>
+		{/each}
 
 	</div>
 

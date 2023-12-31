@@ -29,7 +29,7 @@
 						</div>
 						<h1 class="text-xl font-bold">{exam.uc} </h1>
 
-						<div class="badge badge-outline">Exam</div>
+						<div class="badge badge-outline">{exam.type}</div>
 					</div>
 
 					<!-- Starts At -->
