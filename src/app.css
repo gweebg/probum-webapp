@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'Hubot Sans';
-    src: url('static/fonts/Hubot-Sans.woff2') format('woff2');
+    src: url('/fonts/Hubot-Sans.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
