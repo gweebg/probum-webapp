@@ -4,10 +4,11 @@
     import MultipleChoiceQuestion from './MultipleChoiceQuestion.svelte';
     import OpenQuestion from './OpenQuestion.svelte';
     import BlankSpacesQuestion from './BlankSpacesQuestion.svelte';
-    import Navbar from '../navbar/Navbar.svelte';
   
     export let exam: ExamData;
-    
+    export let mode: string;
+    export let studentAnswers: Record<string, string>;
+  
     let currentQuestionIndex = 0;
   
     interface ExamData {
@@ -23,13 +24,8 @@
       points: number;
       imagePath: string;
       description: string;
-        answers: Record<string, string>;
-      // Add other properties based on your actual data structure
+      answers: Record<string, string>;
     }
-  
-    onMount(() => {
-      // You can add initialization logic here if needed
-    });
   
     function handleSubmit() {
       if (confirm('Are you sure you want to submit the exam?')) {
@@ -51,27 +47,35 @@
     }
   </script>
   
-  
   <div class="p-8 w-full">
-    <!-- <Navbar mode="lstudent"/> -->
     <h1 class="text-2xl font-bold mb-4">{exam.description}</h1>
     <p class="text-gray-600 mb-2">Subject: {exam.subject}</p>
     <p class="text-gray-600 mb-4">Duration: {exam.duration} minutes</p>
   
     {#if exam.questions.length > 0 && currentQuestionIndex < exam.questions.length}
+      <div class="flex justify-between">
+        <div>
+          <p class="text-lg font-semibold">Question {currentQuestionIndex + 1}:</p>
+        </div>
+        {#if mode === 'view'}
+          <div class="mt-4">
+            <p class="text-lg font-semibold">Grade: {exam.questions[currentQuestionIndex].points}</p>
+          </div>
+        {/if}
+      </div>
+  
       {#if exam.questions[currentQuestionIndex].type === 'T/F'}
-        <TrueFalseQuestion question={exam.questions[currentQuestionIndex]} />
+        <TrueFalseQuestion question={exam.questions[currentQuestionIndex]} mode={mode} studentAnswers={studentAnswers[currentQuestionIndex.toString()]} />
       {/if}
       {#if exam.questions[currentQuestionIndex].type === 'Multiple'}
-        <MultipleChoiceQuestion question={exam.questions[currentQuestionIndex]} />
+        <MultipleChoiceQuestion question={exam.questions[currentQuestionIndex]} mode={mode} studentAnswers={studentAnswers[currentQuestionIndex.toString()]}/>
       {/if}
       {#if exam.questions[currentQuestionIndex].type === 'Open'}
-        <OpenQuestion question={exam.questions[currentQuestionIndex]} />
+        <OpenQuestion question={exam.questions[currentQuestionIndex]} mode={mode} studentAnswers={studentAnswers[currentQuestionIndex.toString()]}/>
       {/if}
       {#if exam.questions[currentQuestionIndex].type === 'Spaces'}
-        <BlankSpacesQuestion question={exam.questions[currentQuestionIndex]} />
+        <BlankSpacesQuestion question={exam.questions[currentQuestionIndex]} mode={mode} studentAnswers={studentAnswers[currentQuestionIndex.toString()]}/>
       {/if}
-      <!-- Add more conditions for other question types -->
     {/if}
   
     <!-- Navigation buttons -->
@@ -91,11 +95,20 @@
     </div>
   
     <!-- Submit button -->
-    <button
-      class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      on:click={handleSubmit}
-    >
-      Submit Exam
-    </button>
+    {#if mode === 'answer'}
+      <button
+        class="mt-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        on:click={handleSubmit}
+      >
+        Submit Exam
+      </button>
+    {:else if mode === 'view'}
+      <button
+        class="mt-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        on:click={() => console.log("leave exam")}
+      >
+        Leave Exam
+      </button>
+    {/if}
   </div>
   

@@ -10,7 +10,13 @@
 
   
 
-  <div class="min-h-screen w-full flex items-center justify-center">
+  
+  
+  <a href="/" class="h-full w-6/12 max-w-96">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Logotipo_Universidade_de_Vigo.jpg" class="h-full w-full">
+  </a>
+  
+  <div class="min-h-screen w-full flex items-center justify-center" style="background-image: url('https://arquitecturaviva.com/assets/uploads/obras/46781/av_imagen.webp'); background-size: cover; opacity: 1;">
     <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md" on:submit|preventDefault={handleLogin}>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
