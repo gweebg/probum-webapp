@@ -121,7 +121,7 @@
 </script>
 
 {#if exam}
-    <Exam {exam} mode="answer"/>
+    <Exam {exam} mode="answer" studentAnswers=null/>
 {:else}
     <p>Loading...</p>
 {/if}
