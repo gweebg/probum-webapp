@@ -1,4 +1,4 @@
-import { PUBLIC_SERVER_API_URL } from '$env/static/public';
+import { USER_API_URL } from '$env/static/private';
 
 export const handle = async ({ event, resolve }) => {
 
@@ -8,7 +8,7 @@ export const handle = async ({ event, resolve }) => {
 
 		try {
 
-			const userResponse = await fetch(`${PUBLIC_SERVER_API_URL}/users/user/`,
+			const userResponse = await fetch(`${USER_API_URL}/user`,
 				{
 					method: 'GET',
 					headers: { 'Content-Type': 'application/json', 'Authorization': authCookie }
@@ -21,17 +21,5 @@ export const handle = async ({ event, resolve }) => {
 
 	}
 
-	const response = await resolve(event);
-	const location = response.headers.get('location');
-
-	if (location?.includes("?jwt=")) { // maybe jwt cookie is set as a url param ?
-
-		const token = location.split("jwt=")[1];
-		let expires_in = 60 * 60 * 24 * 30; // One month.
-		response.headers.append('set-cookie', `AuthorizationToken="Bearer ${token}"; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${expires_in};`);
-
-	}
-
-	return response;
-
+	return await resolve(event);
 };
