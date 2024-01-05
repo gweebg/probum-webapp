@@ -27,27 +27,27 @@
 								<Icon icon="ion:open-outline"></Icon>
 							</a>
 						</div>
-						<h1 class="text-xl font-bold">{exam.uc} </h1>
+						<h1 class="text-xl font-bold">{exam.subject} </h1>
 
-						<div class="badge badge-outline">{exam.type}</div>
+						<div class="badge badge-outline">{exam.exam_type}</div>
 					</div>
 
 					<!-- Starts At -->
-					<div class="flex flex-row gap-2">
-						{#if untilDate === "today"}
-							<div class="badge badge-success">
-								<p>Today</p>
-							</div>
-						{:else if untilDate === "expired" }
-							<div class="badge badge-error">
-								<p>Expired</p>
-							</div>
-						{:else}
-							<div class="badge badge-warning">
-								<p>In {calculateTimeUntilDate(exam.start_at)}</p>
-							</div>
-						{/if}
-					</div>
+<!--					<div class="flex flex-row gap-2">-->
+<!--						{#if untilDate === "today"}-->
+<!--							<div class="badge badge-success">-->
+<!--								<p>Today</p>-->
+<!--							</div>-->
+<!--						{:else if untilDate === "expired" }-->
+<!--							<div class="badge badge-error">-->
+<!--								<p>Expired</p>-->
+<!--							</div>-->
+<!--						{:else}-->
+<!--							<div class="badge badge-warning">-->
+<!--								<p>In {calculateTimeUntilDate(exam.start_at)}</p>-->
+<!--							</div>-->
+<!--						{/if}-->
+<!--					</div>-->
 
 				</div>
 			</div>
@@ -62,23 +62,19 @@
 				<div class="mt-2">
 					<div class="divider mt-0"></div>
 					<div class="grid grid-cols-3">
-						<p><span class="font-semibold">Building:</span> <span class="badge">{exam.location.building}</span></p>
-						<p><span class="font-semibold">Nº. Questions:</span> <span class="badge">{exam.question_amount}</span></p>
-						<p><span class="font-semibold">Duration:</span> <span class="badge">{exam.duration} hour(s)</span></p>
-						<p><span class="font-semibold">Room:</span> <span class="badge">{exam.location.room}</span></p>
-						<p><span class="font-semibold">Max. Score:</span> <span class="badge">{exam.scored_to}</span></p>
-						<p><span class="font-semibold">Date:</span> <span class="badge">{formatDate(exam.start_at)}</span></p>
+						<p><span class="font-semibold">Building:</span> <span class="badge">CP1</span></p>
+						<p><span class="font-semibold">Nº. Questions:</span> <span class="badge">{exam.number_questions}</span></p>
+						<p><span class="font-semibold">Duration:</span> <span class="badge">{exam.duration} minute(s)</span></p>
+						<p><span class="font-semibold">Room:</span> <span class="badge">1.01</span></p>
+						<p><span class="font-semibold">Max. Score:</span> <span class="badge">{exam.max_score}</span></p>
+						<p><span class="font-semibold">Date:</span> <span class="badge">05/01/2024 14:00:00</span></p>
 					</div>
 				</div>
 
 				<!-- Controls -->
 				<div class="flex flex-row mt-4">
-					<div class="tooltip tooltip-left ml-auto" data-tip="Start Exam">
-						{#if untilDate === "today"}
-							<button class="btn btn-success btn-xs sm:btn-xs md:btn-sm lg:btn-sm">Enroll</button>
-						{:else}
-							<button disabled class="btn btn-disabled ml-auto btn-xs sm:btn-xs md:btn-sm lg:btn-sm">Enroll</button>
-						{/if}
+					<div class="tooltip tooltip-left ml-auto" data-tip="Open Exam Correction">
+						<a href={`/user/exam/${exam.id}`} class="btn btn-success btn-xs sm:btn-xs md:btn-sm lg:btn-sm">Open</a>
 					</div>
 				</div>
 

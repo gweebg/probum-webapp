@@ -6,6 +6,7 @@
 	import {Check} from "lucide-svelte";
 
 	import {onMount} from "svelte";
+    import {goto} from "$app/navigation";
 
     export let data;
 
@@ -15,17 +16,18 @@
 
     const controls = {
         questionIndex: 0,
-        answers: []
+        answers: {}
     }
 
     for (const question of questions) {
+
         const response_data = {...question.answer}
 
-        for (const opt in response_data) {
+        for (const opt in Object.keys(response_data)) {
             response_data[opt] = false;
         }
 
-        controls.answers = [...controls.answers, {question_id: question.id, response_data: response_data}]
+        controls.answers[question.question_id] = {question_id: question.question_id, response_data: response_data}
     }
 
     const next = () => {
@@ -38,17 +40,28 @@
         else controls.questionIndex--;
     }
 
-    const submit = () => {
+    const submit = async (event) => {
+
+        event.preventDefault();
 
 		const submission = {
-			student_id: user.uid,
+			student_id: user.UId,
 			exam_id: exam.id,
-			responses: controls.answers
+			responses: Object.values(controls.answers)
 		};
 
-		console.log(submission);
+        try {
 
-		// todo: Hit endpoint.
+            const response = await fetch("http://localhost:5173/api/solve",
+                {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(submission)
+                });
+
+        } catch (err) { console.log(err) }
+
+        await goto("/user/exams");
     }
 
 	let totalTime = exam.duration;
@@ -143,7 +156,7 @@
 
 								<label class="label cursor-pointer">
 									<input type="checkbox" class="checkbox"
-                                           bind:checked={controls.answers[q.id].response_data[opt]}/>
+                                           bind:checked={controls.answers[q.question_id].response_data[opt]}/>
 								</label>
 
 								<span class="break-words">{opt}</span>

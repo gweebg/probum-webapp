@@ -4,7 +4,10 @@
     import MetadataForm from "$lib/components/create/MetadataForm.svelte";
     import QuestionsForm from "$lib/components/create/QuestionsForm.svelte";
     import SubmitForm from "$lib/components/create/SubmitForm.svelte";
+
     import {examStore} from "$lib/stores/create_store.js";
+
+    import {goto} from "$app/navigation";
 
     export let data;
 
@@ -37,7 +40,9 @@
         stepState[key] = false;
     }
 
-    const submitExam = () => {
+    const submitExam = async (event) => {
+
+        event.preventDefault();
 
         let submission;
 
@@ -47,9 +52,20 @@
 
         unsubscribe();
 
-        console.log(submission);
+        console.log(JSON.stringify(submission))
 
-        // todo: Hit endpoint.
+        try {
+
+        	const response = await fetch("http://localhost:5173/api/create",
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(submission)
+            });
+
+        } catch (err) { console.log(err) }
+
+        await goto("/");
     }
 
 </script>

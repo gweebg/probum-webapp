@@ -34,6 +34,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@ajoelp/json-to-formdata": "^1.5.0",
 		"@svelte-plugins/datepicker": "^0.1.3",
 		"date-fns": "^3.1.0",
 		"lucide-svelte": "^0.305.0",

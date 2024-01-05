@@ -68,7 +68,7 @@
             </section>
 
             {#each exam.questions as question, id}
-                <QuestionItemCorrection {question} answer={{score: status.question_score[question.id], responses: getUserResponses(question.id)}} {id}/>
+                <QuestionItemCorrection {question} answer={{score: status.question_score[question.question_id], responses: getUserResponses(question.question_id)}} {id}/>
             {/each}
 
         </div>

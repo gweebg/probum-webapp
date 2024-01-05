@@ -7,9 +7,9 @@
 		let metrics = {};
 
 		for (const e of exams) {
-			if (e.uc in metrics) metrics[e.uc] += 1;
+			if (e.uc in metrics) metrics[e.subject] += 1;
 			else {
-				metrics[e.uc] = 1;
+				metrics[e.subject] = 1;
 			}
 		}
 

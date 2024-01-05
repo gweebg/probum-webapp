@@ -34,7 +34,7 @@
 			<div class="flex flex-col items-center flex-1">
 
 				<!-- Listing Header -->
-				<EntryListHeader user={user.user} exams={exams}/>
+				<EntryListHeader user={user} exams={exams}/>
 
 				<!-- Listing Items -->
 				<div class="w-full flex-1 overflow-y-scroll">

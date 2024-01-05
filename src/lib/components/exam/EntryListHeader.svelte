@@ -3,8 +3,6 @@
 	export let user;
 	export let exams;
 
-	console.log(user)
-
 </script>
 
 

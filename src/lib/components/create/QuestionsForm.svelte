@@ -73,7 +73,9 @@
                 stat: "#0 A truthful statement!",
                 value: true
             }
-        ]
+        ];
+
+        counter = 1;
 
         const modal = document.getElementById("question_form");
         modal.close();

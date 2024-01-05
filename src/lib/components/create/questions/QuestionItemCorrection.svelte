@@ -8,8 +8,6 @@
 
     const { score, responses } = answer;
 
-    console.log(score, responses)
-
 </script>
 
 <div class="w-full rounded-lg p-4 my-4">

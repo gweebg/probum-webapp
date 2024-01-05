@@ -7,11 +7,11 @@ export const load = async ({ locals }) => {
     }
 
     if (locals.user.role in ["teacher", "admin", "tech"]) {
-        throw error(401, { message: "Only teachers are allowed to access this route."})
+        throw error(401, "Only teachers are allowed to access this route.")
     }
 
     return {
-        "user": locals.user,
+        user: locals.user.user,
         "ucs": ["Sistemas Operativos", "Sistemas Distribuídos", "Cálculo de Programas"]
     };
 
