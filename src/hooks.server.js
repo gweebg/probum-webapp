@@ -4,7 +4,7 @@ export const handle = async ({ event, resolve }) => {
 
 	const authCookie = event.cookies.get('AuthorizationToken');
 
-	if (authCookie) { // auth cookie is set, we check validity and continue
+	if (authCookie) {
 
 		try {
 
