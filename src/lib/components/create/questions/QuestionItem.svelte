@@ -6,6 +6,8 @@
     export let question;
     export let id;
 
+    export let viewOnly = false;
+
     const deleteQuestion = () => {
         examStore.update(store => {
             store.questions.splice(id, 1);
@@ -22,9 +24,11 @@
 
         <div class="flex flex-row items-center gap-2">
             <div class="badge badge-accent">{question.points} points</div>
-            <button class="btn btn-sm btn-outline btn-square" on:click={() => {deleteQuestion()}}>
-                <X size={18}/>
-            </button>
+            {#if !viewOnly}
+                <button class="btn btn-sm btn-outline btn-square" on:click={() => {deleteQuestion()}}>
+                    <X size={18}/>
+                </button>
+            {/if}
         </div>
     </div>
 
@@ -40,16 +44,5 @@
         </div>
 
     {/each}
-
-    <!--{-->
-    <!--    question_type: "MULTIPLE_CHOICE",-->
-    <!--    points: 20,-->
-    <!--    image_path: "nopath",-->
-    <!--    description: "Qual das opções é a mais correta ?",-->
-    <!--    answer: {-->
-    <!--    "Enunciado 1": true,-->
-    <!--    "Enunciado 2": false,-->
-    <!--    "Enunciado 3": false-->
-    <!--}-->
 
 </div>

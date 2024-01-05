@@ -6,6 +6,8 @@ export const handle = async ({ event, resolve }) => {
 
 	if (authCookie) {
 
+		event.locals.cookie = authCookie;
+
 		try {
 
 			const userResponse = await fetch(`${USER_API_URL}/user`,

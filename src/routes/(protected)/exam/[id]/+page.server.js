@@ -20,6 +20,7 @@ export const load = async ({ locals }) => {
 			role: "mstudent"
 		},
 		exam: {
+			"id": 0,
 			"version": 1,
 			"reservation": "Reserva2",
 			"duration": 90,
@@ -58,7 +59,7 @@ export const load = async ({ locals }) => {
 					"id": 2,
 					"question_type": "MULTIPLE_CHOICE",
 					"points": 25.0,
-					"image_path": "No source",
+					"image_path": "https://getwallpapers.com/wallpaper/full/f/8/d/1284031-large-wallpapers-1920x1140-ipad.jpg",
 					"description": "Este é uma questão de escolha múltipla 2",
 					"answer": {
 						"0": true,

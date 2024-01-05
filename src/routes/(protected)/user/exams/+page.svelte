@@ -26,7 +26,7 @@
 
 	<Navbar mode="lstudent"/>
 
-	<div class="flex w-full flex-1 overflow-y-scroll">
+	<div class="flex w-full flex-1 overflow-y-scroll px-40">
 
 		<div class="flex flex-row-reverse flex-1">
 
@@ -34,7 +34,7 @@
 			<div class="flex flex-col items-center flex-1">
 
 				<!-- Listing Header -->
-				<EntryListHeader user={user} exams={exams}/>
+				<EntryListHeader user={user.user} exams={exams}/>
 
 				<!-- Listing Items -->
 				<div class="w-full flex-1 overflow-y-scroll">

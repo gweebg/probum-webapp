@@ -23,7 +23,7 @@
 			},
 			"Expired": {
 				value: true,
-				color: "neutral"
+				color: "error"
 			}
 		};
 	}
@@ -94,7 +94,7 @@
 
 			<!-- Buttons -->
 			<div class="mt-6 flex flex-row space-evenly w-full gap-2">
-				<button class="btn btn-sm btn-primary w-1/2" on:click={onApply}>Apply</button>
+				<button class="btn btn-sm btn-accent w-1/2" on:click={onApply}>Apply</button>
 				<button class="btn btn-sm btn-secondary w-1/2" on:click={onReset}>Reset</button>
 			</div>
 

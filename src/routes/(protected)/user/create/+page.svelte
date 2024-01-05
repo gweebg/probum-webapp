@@ -4,14 +4,11 @@
     import MetadataForm from "$lib/components/create/MetadataForm.svelte";
     import QuestionsForm from "$lib/components/create/QuestionsForm.svelte";
     import SubmitForm from "$lib/components/create/SubmitForm.svelte";
-
-    import { examStore } from "$lib/stores/create_store.js";
+    import {examStore} from "$lib/stores/create_store.js";
 
     export let data;
 
     const { user, ucs } = data;
-
-    let date = new Date();
 
     let stepControls = {
         currentStep: 0,
@@ -22,17 +19,6 @@
         meta: true,
         questions: false,
         submit: false
-    }
-
-    let exam = {
-        version: 1,
-        reservation: "018a-182-da13-123a-13fd",
-        duration: 120,
-        max_score: 20,
-        exam_type: "",
-        description: "",
-        subject: "",
-        questions: []
     }
 
     const nextStep = () => {
@@ -51,18 +37,34 @@
         stepState[key] = false;
     }
 
-    const updateMetadata = (event) => {
-        exam = {...exam, ...event.detail.metadata}
+    const submitExam = () => {
+
+        let submission;
+
+        const unsubscribe = examStore.subscribe((store) => {
+            submission = store;
+        })
+
+        unsubscribe();
+
+        console.log(submission);
+
+        // todo: Hit endpoint.
     }
 
 </script>
+
+<svelte:head>
+    <title>
+        Exam Creation
+    </title>
+</svelte:head>
 
 <div class="flex flex-col h-screen gap-2">
 
     <Navbar mode="mstudent"/>
 
     <div class="flex flex-col flex-1 w-full items-center px-40 my-4">
-
 
         <!-- Form Steps -->
         <ul class="steps w-full mb-4">
@@ -90,15 +92,13 @@
 
             {#if stepState.submit}
                 <button class="btn flex-1" on:click={prevStep}>Previous</button>
-                <button class="btn flex-1 btn-primary" on:click={prevStep}>Submit</button>
+                <button class="btn flex-1 btn-primary" on:click={submitExam}>Submit</button>
             {:else}
                 <button class="btn flex-1" on:click={prevStep}>Previous</button>
                 <button class="btn flex-1 btn-accent" on:click={nextStep}>Next</button>
             {/if}
 
         </div>
-
-        <!-- Question Selection -->
 
     </div>
 

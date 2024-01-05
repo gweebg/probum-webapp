@@ -13,7 +13,7 @@ const initialExam = {
         {
             question_type: "MULTIPLE_CHOICE",
             points: 20,
-            image_path: "nopath",
+            image_path: "No source",
             description: "Is this an example question ?",
             answer: {
                 "Well, I don't think so..": false,

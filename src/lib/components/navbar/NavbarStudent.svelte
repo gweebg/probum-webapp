@@ -2,6 +2,7 @@
 
 
 import Icon from '@iconify/svelte';
+import {User} from "lucide-svelte";
 </script>
 
 <div class="navbar bg-base-100 shadow-md mb-4">
@@ -47,25 +48,25 @@ import Icon from '@iconify/svelte';
 			</button>
 
 			<ul tabindex="0" class="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-				<li><a>Homepage</a></li>
-				<li><a>Portfolio</a></li>
-				<li><a>About</a></li>
+				<li><a class="opacity">Not Implemented</a></li>
 			</ul>
 		</div>
 
 		<!-- User -->
-		<div class="dropdown dropdown-end ml-2">
+		<div class="dropdown dropdown-end">
 
 			<div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
-				<div class="w-10 rounded-full">
-					<img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-				</div>
+					<User size={23}/>
 			</div>
 
 			<ul tabindex="0" class="menu menu-md dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-				<li><a>Homepage</a></li>
-				<li><a>Portfolio</a></li>
-				<li><a>About</a></li>
+				<li><a href="/">Homepage</a></li>
+				<li><a href="/user/exams">Exams</a></li>
+				<li>
+					<form action="/logout" method="post">
+						<button>Logout</button>
+					</form>
+				</li>
 			</ul>
 		</div>
 

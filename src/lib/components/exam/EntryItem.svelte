@@ -23,7 +23,7 @@
 					<!-- Header -->
 					<div class="flex flex-row items-center gap-2">
 						<div class="tooltip tooltip-right" data-tip="Open">
-							<a href="/" class="pointer-events-auto">
+							<a href="/user/exam/1" class="pointer-events-auto">
 								<Icon icon="ion:open-outline"></Icon>
 							</a>
 						</div>
@@ -39,7 +39,7 @@
 								<p>Today</p>
 							</div>
 						{:else if untilDate === "expired" }
-							<div class="badge badge-neutral">
+							<div class="badge badge-error">
 								<p>Expired</p>
 							</div>
 						{:else}

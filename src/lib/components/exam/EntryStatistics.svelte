@@ -43,7 +43,7 @@
 					<p class="label-text">{uc}</p>
 					<span class="label-text ml-auto pr-2">{count}</span>
 				</div>
-				<progress class="progress progress-secondary w-full" value={(count * 100)/totalSum} max="100"></progress>
+				<progress class="progress progress-accent w-full" value={(count * 100)/totalSum} max="100"></progress>
 
 			</div>
 		{/each}

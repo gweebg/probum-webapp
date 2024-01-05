@@ -1,5 +1,11 @@
-<form action="/logout" method="post">
-    <button class="btn">Logout</button>
-</form>
+<script>
+    import Navbar from "$lib/components/navbar/Navbar.svelte";
+</script>
 
-<a href="/login" class="btn">Login</a>
+<svelte:head>
+    <title>
+        Probum - Home
+    </title>
+</svelte:head>
+
+<Navbar mode="mstudent"></Navbar>
